@@ -13,30 +13,48 @@ export default class Calculator extends Component{
 
     return(
       <View style={styles.view}>
-        <ImageBackground source={require('./back.jpg')} style={styles.background} >
-          <View style={styles.innerview}>
-            <TextInput style={styles.textinput}
-             placeholder='Type here for calculation'
-             keyboardType='phone-pad'
-            />
-            <Text>{"\n"}</Text>
-            <TextInput style={styles.textinput}
-             placeholder='Result'
-             keyboardType='phone-pad'
-             editable={false}
-            />
-            <Text>{"\n"}</Text><Text>{"\n"}</Text>
-            <View style={{flexDirection:'row'}}>
-              <TouchableOpacity>
-              <Text style={{fontSize:16,color:'white'}}>Reset</Text>
-              </TouchableOpacity>
-              <Text>{"                       "}</Text>
-              <TouchableOpacity>
-              <Text style={{fontSize:16,color:'white'}}>Compute</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </ImageBackground>
+          <ImageBackground source={require('./back.jpg')} style={styles.background} >
+              <View style={styles.innerview}>
+                  <TextInput style={styles.textinput}
+                   placeholder='Type here for calculation'
+                   keyboardType='phone-pad'
+                  />
+                  <Text>{"\n"}</Text>
+                  <TextInput style={styles.textinput}
+                   placeholder='Result'
+                   keyboardType='phone-pad'
+                   editable={false}
+                  />
+                  <Text>{"\n"}</Text>
+                  <View style={{flexDirection:'row'}}>
+                        <TouchableOpacity>
+                        <Text style={styles.button}>Reset</Text>
+                        </TouchableOpacity>
+                        <Text>{"                       "}</Text>
+                        <TouchableOpacity>
+                        <Text style={styles.button}>Compute</Text>
+                        </TouchableOpacity>
+                  </View>
+                  <Text>{"\n"}</Text>
+                  <View style={{flexDirection:'row'}}>
+                        <TouchableOpacity>
+                        <Text style={styles.button}>add</Text>
+                        </TouchableOpacity>
+                        <Text>{"                 "}</Text>
+                        <TouchableOpacity>
+                        <Text style={styles.button}>sub</Text>
+                        </TouchableOpacity>
+                        <Text>{"                 "}</Text>
+                        <TouchableOpacity>
+                        <Text style={styles.button}>mul</Text>
+                        </TouchableOpacity>
+                        <Text>{"                 "}</Text>
+                        <TouchableOpacity>
+                        <Text style={styles.button}>div</Text>
+                        </TouchableOpacity>
+                  </View>
+              </View>
+          </ImageBackground>
       </View>
 
     )
@@ -78,5 +96,10 @@ const styles = StyleSheet.create({
     flex:1,
     width:'100%',
     height:'100%'
+  },
+
+  button: {
+    fontSize:18,
+    color:'white'
   }
 })
