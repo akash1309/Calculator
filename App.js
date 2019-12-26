@@ -114,8 +114,8 @@ export default class Calculator extends Component{
 
   handleComputation(){
     let symbol = this.state.selectedSymbol,
-                 firstValue = parseInt(this.state.firstValue),
-                 secondValue = parseInt(this.state.secondValue);
+                 firstValue = parseFloat(this.state.firstValue),
+                 secondValue = parseFloat(this.state.secondValue);
 
                 if (!symbol) {
                     return;
