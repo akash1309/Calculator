@@ -9,47 +9,78 @@ import { View,
        } from 'react-native';
 
 export default class Calculator extends Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+      firstValue:'',
+      secondValue:'',
+      selectedSymbol:null,
+      resultValue:''
+    };
+  }
+
+
+
   render(){
 
     return(
       <View style={styles.view}>
           <ImageBackground source={require('./back.jpg')} style={styles.background} >
               <View style={styles.innerview}>
-                  <TextInput style={styles.textinput}
-                   placeholder='Type here for calculation'
-                   keyboardType='phone-pad'
-                  />
+                  <View style={{flexDirection:'row'}}>
+                        <TextInput style={styles.textinput}
+                         placeholder='Ist Number'
+                         keyboardType='phone-pad'
+                         onChangeText={(firstValue) => this.setState({firstValue})}
+                         value={this.state.firstValue}
+                        />
+                        <Text>{"    "}</Text>
+                        <TextInput style={styles.textinput}
+                         placeholder='Operator'
+                         editable={false}
+                         value={this.state.selectedSymbol}
+                        />
+                        <Text>{"    "}</Text>
+                        <TextInput style={styles.textinput}
+                         placeholder='2nd Number'
+                         keyboardType='phone-pad'
+                         onChangeText={(secondValue) => this.setState({secondValue})}
+                         value={this.state.secondValue}
+                        />
+                  </View>
                   <Text>{"\n"}</Text>
                   <TextInput style={styles.textinput}
                    placeholder='Result'
-                   keyboardType='phone-pad'
                    editable={false}
+                   value={this.state.resultValue}
+
                   />
                   <Text>{"\n"}</Text>
                   <View style={{flexDirection:'row'}}>
                         <TouchableOpacity>
-                        <Text style={styles.button}>Reset</Text>
+                        <Text style={styles.button} onPress={() => this.handleReset()}>Reset</Text>
                         </TouchableOpacity>
                         <Text>{"                       "}</Text>
                         <TouchableOpacity>
-                        <Text style={styles.button}>Compute</Text>
+                        <Text style={styles.button} onPress={() => this.handleComputation()}>Compute</Text>
                         </TouchableOpacity>
                   </View>
                   <Text>{"\n"}</Text>
                   <View style={{flexDirection:'row'}}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.handleOperator('+')}>
                         <Text style={styles.calculation}>+</Text>
                         </TouchableOpacity>
                         <Text>{"                 "}</Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.handleOperator('-')}>
                         <Text style={styles.calculation}>-</Text>
                         </TouchableOpacity>
                         <Text>{"                 "}</Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.handleOperator('*')}>
                         <Text style={styles.calculation}>x</Text>
                         </TouchableOpacity>
                         <Text>{"                 "}</Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.handleOperator('/')}>
                         <Text style={styles.calculation}>/</Text>
                         </TouchableOpacity>
                   </View>
@@ -60,16 +91,52 @@ export default class Calculator extends Component{
     )
   }
 
+  handleReset(){
+    this.setState({
+      selectedSymbol:null,
+      firstValue:'',
+      secondValue:'',
+      resultValue:''
+    })
+  }
+
+  handleOperator(str) {
+        switch (str) {
+            case '/':
+            case '*':
+            case '+':
+            case '-':
+                this.setState({
+                    selectedSymbol: str
+                });
+        }
+    }
+
+  handleComputation(){
+    let symbol = this.state.selectedSymbol,
+                 firstValue = parseInt(this.state.firstValue),
+                 secondValue = parseInt(this.state.secondValue);
+
+                if (!symbol) {
+                    return;
+                }
+
+                var result = eval(firstValue + symbol + secondValue);
+                this.setState({
+                    resultValue: result.toString()
+                });
+
+
+  }
+
 }
 
 const styles = StyleSheet.create({
   textinput: {
     fontSize:18,
     height: 40,
-    width: 250,
+    width: 100,
     borderColor: 'black',
-    borderRightWidth: 3,
-    borderLeftWidth: 3,
     borderWidth: 1,
     padding: 2,
     textAlign:'center',
