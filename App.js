@@ -38,19 +38,19 @@ export default class Calculator extends Component{
                   <Text>{"\n"}</Text>
                   <View style={{flexDirection:'row'}}>
                         <TouchableOpacity>
-                        <Text style={styles.button}>add</Text>
+                        <Text style={styles.calculation}>+</Text>
                         </TouchableOpacity>
                         <Text>{"                 "}</Text>
                         <TouchableOpacity>
-                        <Text style={styles.button}>sub</Text>
+                        <Text style={styles.calculation}>-</Text>
                         </TouchableOpacity>
                         <Text>{"                 "}</Text>
                         <TouchableOpacity>
-                        <Text style={styles.button}>mul</Text>
+                        <Text style={styles.calculation}>x</Text>
                         </TouchableOpacity>
                         <Text>{"                 "}</Text>
                         <TouchableOpacity>
-                        <Text style={styles.button}>div</Text>
+                        <Text style={styles.calculation}>/</Text>
                         </TouchableOpacity>
                   </View>
               </View>
@@ -58,9 +58,6 @@ export default class Calculator extends Component{
       </View>
 
     )
-
-
-
   }
 
 }
@@ -101,5 +98,14 @@ const styles = StyleSheet.create({
   button: {
     fontSize:18,
     color:'white'
+  },
+
+  calculation: {
+    fontSize:18,
+    color:'white',
+    borderWidth:1,
+    borderColor:'white',
+    width:30,
+    textAlign:'center'
   }
 })
